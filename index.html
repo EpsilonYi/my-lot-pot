@@ -26,10 +26,21 @@
     let a = document.getElementById('alpha');
     let b = document.getElementById('beta');
     let g = document.getElementById('gamma');
+    let minB = null;
+    let maxB = null;
     window.addEventListener('deviceorientation', function (event) {
         a.innerText  = event.alpha;
         b.innerText  = event.beta;
         g.innerText  = event.gamma;
+        handleBeta(event.beta)
     }, false);
+
+    function handleBeta (val) {
+      if (minB === null && maxB === null) {
+        maxB = minB = val;
+        return;
+      }
+      val < minB && (minB = val)
+    }
 </script>
 </html>
