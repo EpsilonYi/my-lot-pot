@@ -21,13 +21,32 @@
         Gamma:
         <span id="gamma"></span>
     </div>
+    <div id="myChart" style="width: 600px;height:400px;"></div>
 </body>
+<script src="echarts.min.js"></script>
 <script>
     let a = document.getElementById('alpha');
     let b = document.getElementById('beta');
     let g = document.getElementById('gamma');
+    let chart = echarts.init(document.getElementById('myChart'));
     let minB = null;
     let maxB = null;
+    let x = 0;
+    let option = {
+      xAxis: {
+        type: 'category',
+        data: []
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [],
+        type: 'line',
+        smooth: true
+      }]
+    };
+
     window.addEventListener('deviceorientation', function (event) {
         a.innerText  = event.alpha;
         b.innerText  = event.beta;
@@ -40,7 +59,9 @@
         maxB = minB = val;
         return;
       }
-      val < minB && (minB = val)
+      option.series[0].data.push(val);
+      option.xAxis.data.push(x++);
+      chart.setOption(option);
     }
 </script>
 </html>
