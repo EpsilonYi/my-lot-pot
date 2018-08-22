@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>My Lot Pot</title>
+</head>
+<body>
+    <div>
+        Alpha:
+        <span id="alpha"></span>
+    </div>
+    <div>
+        Beta:
+        <span id="beta"></span>
+    </div>
+    <div>
+        Gamma:
+        <span id="gamma"></span>
+    </div>
+</body>
+<script>
+    let a = document.getElementById('alpha');
+    let b = document.getElementById('beta');
+    let g = document.getElementById('gamma');
+    window.addEventListener('deviceorientation', function (event) {
+        a.innerText  = event.alpha;
+        b.innerText  = event.beta;
+        g.innerText  = event.gamma;
+    }, false);
+</script>
+</html>
